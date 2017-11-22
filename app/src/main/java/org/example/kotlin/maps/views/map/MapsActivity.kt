@@ -79,6 +79,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener {
         }
     }
 
+    private lateinit var myReceiver:Receiver
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
@@ -107,7 +109,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener {
                 .map { JsonParser().parse(it).asJsonObject }
                 .forEach { putMarket(it.get("latitude").asDouble, it.get("longitude").asDouble, it.get("text").asString) }
 
-        registerReceiver(Receiver(), filter)
+        myReceiver = Receiver()
+
+        registerReceiver(myReceiver, filter)
+    }
+
+    override fun onDestroy() {
+        unregisterReceiver(myReceiver)
+        super.onDestroy()
     }
 
     override fun onResume() {
