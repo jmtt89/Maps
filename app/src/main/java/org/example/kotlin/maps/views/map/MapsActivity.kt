@@ -40,11 +40,14 @@ import java.util.*
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener {
     private val TAG: String = " MapsActivity"
+    private val MULTY_PERMISSIONS_REQUEST = 44
     private val PERMISSIONS_REQUEST_LOCATION = 45
     private val LocationPermissions = arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION)
 
     private val PERMISSIONS_REQUEST_PHONE_STATE = 46
     private val PhoneStatePermissions = arrayOf(android.Manifest.permission.READ_PHONE_STATE)
+
+    private val PhoneMultyPermissions = arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION, android.Manifest.permission.READ_PHONE_STATE)
 
     private val PERMISSIONS_REQUEST_SMS_READ = 47
     private val SmsReadPermissions = arrayOf(android.Manifest.permission.READ_SMS)
@@ -155,7 +158,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener {
     private fun startLocationRequest() {
         locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            requestLocationPermissions(this)
+            if(ActivityCompat.checkSelfPermission(this, android.Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED){
+                requestMultiPermissions(this)
+            }else{
+                requestLocationPermissions(this)
+            }
         } else {
             mMap.isMyLocationEnabled = true
 
@@ -237,7 +244,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener {
 
     private fun startPhoneCallTracking() {
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
-            requestPhoneStatePermissions(this)
+            if(ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+                requestMultiPermissions(this)
+            }else{
+                requestPhoneStatePermissions(this)
+            }
         } else {
             /*
             // Esto es mas facil que agregar el receptor de anuncions por codigo, pero mejor
@@ -285,6 +296,20 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener {
         }
     }
 
+    private fun requestMultiPermissions(activity: Activity){
+        // Should we show an explanation?
+        if (ActivityCompat.shouldShowRequestPermissionRationale(activity, android.Manifest.permission.READ_PHONE_STATE)) {
+            AlertDialog.Builder(activity)
+                    .setTitle(R.string.multy_request_title)
+                    .setMessage(R.string.multy_request_message)
+                    .setPositiveButton("Ok", { _, _ -> ActivityCompat.requestPermissions(activity, PhoneMultyPermissions, MULTY_PERMISSIONS_REQUEST) })
+                    .show()
+        } else {
+            // No explanation needed, we can request the permission.
+            ActivityCompat.requestPermissions(activity, PhoneStatePermissions, MULTY_PERMISSIONS_REQUEST)
+        }
+    }
+
     private fun requestReadSMSPermissions(activity: Activity) {
         // Should we show an explanation?
         if (ActivityCompat.shouldShowRequestPermissionRationale(activity, android.Manifest.permission.RECEIVE_SMS)) {
@@ -322,6 +347,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener {
 
                 } else {
                     showPermissionError(requestCode)
+                }
+            }
+            MULTY_PERMISSIONS_REQUEST -> {
+                if (permissions.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    startPhoneCallTracking()
+                    startLocationRequest()
+                } else {
+                    showPermissionError(requestCode)
+                    showPermissionError(requestCode)
+                    requestLocationByIP()
                 }
             }
         }

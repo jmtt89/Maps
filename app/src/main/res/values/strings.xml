@@ -63,4 +63,8 @@
     </string>
     <string name="polar_title">Welcome to Polar Circle</string>
     <string name="polar_description">it\'s amazing that you can get here, I hope you have a good coat</string>
+    <string name="notification_channel_title">Music Player</string>
+    <string name="multy_request_title">Location and Phone Permissions</string>
+    <string name="multy_request_message">The location is needed for locate your device in the map,if you don\'t allow we cant track your position and Phone Permissions is used for put marker in map when someone call</string>
+    <string name="notification_channel2_title">Polar Location Update</string>
 </resources>

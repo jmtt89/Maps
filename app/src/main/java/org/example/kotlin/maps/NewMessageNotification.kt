@@ -1,11 +1,13 @@
 package org.example.kotlin.maps
 
 import android.app.Notification
+import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
+import android.os.Build
 import android.support.v4.app.NotificationCompat
 import org.example.kotlin.maps.views.map.MapsActivity
 
@@ -18,7 +20,16 @@ object NewMessageNotification {
     fun notify(context: Context) {
         val res = context.resources
 
-        val builder = NotificationCompat.Builder(context)
+        val notification = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val nm = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            val channel = NotificationChannel("Location_Checker", context.getString(R.string.notification_channel2_title), NotificationManager.IMPORTANCE_DEFAULT)
+            nm.createNotificationChannel(channel)
+            NotificationCompat.Builder(context, "Location_Checker")
+        }else{
+            NotificationCompat.Builder(context)
+        }
+
+        notification
 
                 // Set appropriate defaults for the notification light, sound,
                 // and vibration.
@@ -52,7 +63,7 @@ object NewMessageNotification {
                 // Automatically dismiss the notification when it is touched.
                 .setAutoCancel(true)
 
-        notify(context, builder.build())
+        notify(context, notification.build())
     }
 
     private fun notify(context: Context, notification: Notification) {

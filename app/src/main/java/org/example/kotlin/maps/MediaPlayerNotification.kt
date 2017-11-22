@@ -10,6 +10,10 @@ import org.example.kotlin.maps.model.Station
 import com.squareup.picasso.Picasso
 import org.example.kotlin.maps.services.MusicService
 import org.example.kotlin.maps.views.radio.detail.StationDetailActivity
+import android.app.NotificationChannel
+import android.os.Build
+
+
 
 /**
  * Helper class for showing and canceling media player
@@ -32,7 +36,6 @@ object MediaPlayerNotification {
     fun notify(context: Context, station: Station, isPlaying:Boolean) {
 
         Thread(Runnable {
-            val res = context.resources
 
             // This image is used as the notification's large icon (thumbnail).
             val picture = Picasso.with(context).load(station.image?.thumb?.url).get()
@@ -47,8 +50,17 @@ object MediaPlayerNotification {
             val intentCl = Intent(context, StationDetailActivity::class.java)
             intentCl.putExtra("stationId", station.id)
 
-            val notification = NotificationCompat.Builder(context)
-                    //.setDefaults(Notification.DEFAULT_ALL)
+
+            val notification = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                val nm = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+                val channel = NotificationChannel("Music_Player", context.getString(R.string.notification_channel_title), NotificationManager.IMPORTANCE_DEFAULT)
+                nm.createNotificationChannel(channel)
+                NotificationCompat.Builder(context, "Music_Player")
+            }else{
+                NotificationCompat.Builder(context)
+            }
+
+            notification
                     .setSmallIcon(R.drawable.ic_stat_media_player)
                     .setContentTitle(title)
                     .setContentText(text)
@@ -78,10 +90,10 @@ object MediaPlayerNotification {
 
             if(isPlaying){
                 //Acion de "Pausar"
-                notification.addAction( generateAction(context, android.R.drawable.ic_media_pause, "Pause", "ACTION_STOP" ))
+                notification.addAction( generateAction(context, android.R.drawable.ic_media_pause, context.getString(R.string.btn_stop), "ACTION_STOP" ))
             }else{
                 //Acion de "Reanudar"
-                notification.addAction( generateAction(context, android.R.drawable.ic_media_play, "Play", "ACTION_PLAY" ))
+                notification.addAction( generateAction(context, android.R.drawable.ic_media_play, context.getString(R.string.btn_play), "ACTION_PLAY" ))
             }
 
             notify(context, notification.build())
