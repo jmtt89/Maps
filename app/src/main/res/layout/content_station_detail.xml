@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="org.example.kotlin.maps.views.radio.detail.StationDetailActivity"
+    tools:showIn="@layout/activity_station_detail">
+
+    <TextView
+        android:id="@+id/station_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="16dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Title" />
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+
+        tools:src="@drawable/example_picture"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/station_name" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.35" />
+
+
+    <TextView
+        android:id="@+id/category"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="32dp"
+
+        app:layout_constraintEnd_toStartOf="@+id/listeners"
+
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guideline"
+        tools:text="Category" />
+
+    <TextView
+        android:id="@+id/listeners"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toEndOf="@+id/category"
+        app:layout_constraintTop_toTopOf="@id/category"
+
+        tools:text="15 listeners" />
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+
+        android:maxLines="2"
+
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/category"
+
+        tools:text="Description Description Description Description Description Description Description Description Description Description Description Description Description" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.7" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+
+        android:orientation="vertical"
+
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/guideline">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="bottom|start"
+            android:text="@string/lbl_create_date" />
+
+        <TextView
+            android:id="@+id/create_at"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            tools:text="15-15-2013" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="bottom|start"
+            android:text="@string/lbl_last_update" />
+
+        <TextView
+            android:id="@+id/update_at"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            tools:text="15-15-2013" />
+
+    </LinearLayout>
+
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.60" />
+
+    <Button
+        android:id="@+id/btn_music_action"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_play"
+        app:layout_constraintBottom_toBottomOf="@+id/guideline4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guideline2" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.80" />
+
+    <ImageButton
+        android:id="@+id/btn_open_facebook"
+        style="@android:style/Widget.DeviceDefault.Button.Borderless.Small"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        app:layout_constraintEnd_toStartOf="@+id/btn_open_twitter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guideline4"
+        app:srcCompat="@drawable/ic_icon_facebook" />
+
+    <ImageButton
+        android:id="@+id/btn_open_twitter"
+        style="@android:style/Widget.DeviceDefault.Button.Borderless.Small"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        app:layout_constraintEnd_toStartOf="@+id/btn_open_web"
+        app:layout_constraintStart_toEndOf="@+id/btn_open_facebook"
+        app:layout_constraintTop_toBottomOf="@+id/guideline4"
+        app:srcCompat="@drawable/ic_icon_twitter" />
+
+    <ImageButton
+        android:id="@+id/btn_open_web"
+        style="@android:style/Widget.DeviceDefault.Button.Borderless.Small"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        app:layout_constraintEnd_toStartOf="@+id/btn_share"
+        app:layout_constraintStart_toEndOf="@+id/btn_open_twitter"
+        app:layout_constraintTop_toBottomOf="@+id/guideline4"
+        app:srcCompat="@drawable/ic_public_24dp" />
+
+    <ImageButton
+        android:id="@+id/btn_share"
+        style="@android:style/Widget.DeviceDefault.Button.Borderless.Small"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        app:layout_constraintEnd_toEndOf="@id/guideline3"
+        app:layout_constraintStart_toEndOf="@+id/btn_open_web"
+        app:layout_constraintTop_toBottomOf="@+id/guideline4"
+        app:srcCompat="@drawable/ic_share_24dp" />
+
+</android.support.constraint.ConstraintLayout>

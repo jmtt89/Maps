@@ -1,0 +1,66 @@
+<resources>
+    <string name="app_name">Maps</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="default_error">Error enabling app capabilities</string>
+    <string name="no_location_permission">The app can not get user location</string>
+    <string name="location_request_title">Request Location Permission</string>
+    <string name="location_request_message">The location is needed for locate your device in the map,if you don\'t allow we cant track your position</string>
+    <string name="incommingCall">Incomming Call from %1$s</string>
+    <string name="phone_state_request_title">Call State Permission</string>
+    <string name="phone_state_request_message">This permission is used for put marker in map when someone call</string>
+    <string name="receive_sms_request_title">SMS Receive Permission</string>
+    <string name="receive_sms_request_message">Con este permiso podemos iniciar automáticamente su reproductor de música cuando llegue el sms</string>
+    <string name="no_phone_state_permission">If you don´t accept this permission, we can\'t check your actual phone number and we can\'t stop the location request when call is in process</string>
+    <string name="no_sms_read_permission">we can not automatically start the music player when the sms arrive, because the permission is denied</string>
+    <string name="location_enable_provider">Localization Configuration</string>
+    <string name="enable_location_provider_description">no Location provider active, do you want activate one?</string>
+    <string name="enable_location_provider_title">Configure location provider</string>
+    <string name="configure">Configure</string>
+    <string name="cancel">Cancel</string>
+    <string name="title_activity_radio">RadioActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_popular">Pupular</string>
+    <string name="title_by_country">ByCountry</string>
+    <string name="title_by_category">ByCategory</string>
+    <string name="lbl_listeners">%1$d listeners</string>
+    <string name="error_playing">Error Streaming This Station Please Try Other</string>
+    <string name="btn_play">Play</string>
+    <string name="btn_stop">Stop</string>
+    <string name="btn_buffering">Buffering...</string>
+
+    <string name="media_player_notification_title_template">Media player: %1$s</string>
+
+    <!-- TODO: remove this placeholder text -->
+    <string name="media_player_notification_placeholder_text_template">You said %1$s and lorem ipsum
+        dolor sit amet, consectetur adipiscing elit. Etiam non enim magna. Morbi dictum, velit vel
+        semper venenatis, magna odio volutpat velit, at ullamcorper nulla lacus sed turpis.
+        Pellentesque vitae metus elit, nec tincidunt tellus. Integer sed nisl sem, ullamcorper
+        ornare lacus. Duis ac mauris sed massa congue volutpat. Donec sed erat sit amet turpis
+        viverra rhoncus sit amet nec magna. Donec lacinia ligula at libero volutpat volutpat nec nec
+        tortor.
+    </string>
+
+    <string name="action_share">Share</string>
+    <string name="action_reply">Reply</string>
+    <string name="title_activity_station_detail">StationDetailActivity</string>
+    <string name="lbl_create_date">Create Date</string>
+    <string name="lbl_last_update">Last Update</string>
+    <string name="title_activity_main2">Main2Activity</string>
+
+    <string name="new_message_notification_title_template">New message: %1$s</string>
+
+    <!-- TODO: remove this placeholder text -->
+    <string name="new_message_notification_placeholder_text_template">You said %1$s and lorem ipsum
+        dolor sit amet, consectetur adipiscing elit. Etiam non enim magna. Morbi dictum, velit vel
+        semper venenatis, magna odio volutpat velit, at ullamcorper nulla lacus sed turpis.
+        Pellentesque vitae metus elit, nec tincidunt tellus. Integer sed nisl sem, ullamcorper
+        ornare lacus. Duis ac mauris sed massa congue volutpat. Donec sed erat sit amet turpis
+        viverra rhoncus sit amet nec magna. Donec lacinia ligula at libero volutpat volutpat nec nec
+        tortor.
+    </string>
+    <string name="polar_title">Welcome to Polar Circle</string>
+    <string name="polar_description">it\'s amazing that you can get here, I hope you have a good coat</string>
+</resources>
