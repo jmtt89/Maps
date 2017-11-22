@@ -206,7 +206,11 @@ class StationDetailActivity : AppCompatActivity() {
     }
 
     fun share(station: Station) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val sendIntent = Intent(Intent.ACTION_VIEW)
+        sendIntent.data = Uri.parse("sms:")
+        sendIntent.putExtra("sms_body", "StationId " + station.id)
+//                    sendIntent.type = "vnd.android-dir/mms-sms"
+        startActivity(sendIntent)
     }
 
 }

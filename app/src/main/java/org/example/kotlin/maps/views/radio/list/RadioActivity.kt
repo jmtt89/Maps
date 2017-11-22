@@ -22,6 +22,7 @@ import android.content.ComponentName
 import org.example.kotlin.maps.services.MusicService.LocalBinder
 import android.os.IBinder
 import android.content.ServiceConnection
+import android.net.Uri
 import org.example.kotlin.maps.services.MusicService
 import org.example.kotlin.maps.R
 import org.example.kotlin.maps.model.Station
@@ -227,7 +228,11 @@ class RadioActivity : AppCompatActivity(), StationInteractionListener {
     }
 
     override fun share(station: Station) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val sendIntent = Intent(Intent.ACTION_VIEW)
+        sendIntent.data = Uri.parse("sms:")
+        sendIntent.putExtra("sms_body", "StationId "+station.id)
+//                    sendIntent.type = "vnd.android-dir/mms-sms"
+        startActivity(sendIntent)
     }
 
     override fun goDetails(station: Station) {
